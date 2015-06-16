@@ -1,0 +1,16 @@
+{{#each list}}
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <a href="/article/show/{{_id}}">{{title}}</a>
+</div>
+  <div class="panel-body"> 
+  	<p>{{summary}}</p>
+  	<p class="text-right">
+  		({{_dt}},
+  		阅读:<span class="text-danger">{{read}}</span>,
+  		评论:<span class="text-danger">{{comment_count}}</span>)
+    	[ <a href="/artile/show/{{_id}}">查看全文</a>]
+    </p>
+  </div>
+</div>
+{{/each}}
