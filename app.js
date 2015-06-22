@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var article = require('./routes/article');
+var comment = require('./routes/comment');
+var rss = require('./routes/rss');
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -30,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/article', article);
+app.use('/comment', comment);
+app.use('/rss', rss);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,27 +55,31 @@ if (app.get('env') === 'development') {
     });
   });
  
-  var Engine = require('tingodb')(), assert = require('assert');
-  var db = new Engine.Db('db', {});
-  var db_users = db.collection("users");
-  var db_article = db.collection("articles");
-  var db_misc = db.collection("misc");
-  db_users.count(function(err, count){
+ 
+  // initialize db
+  var db = require('./db.js');
+  db.users.count(function(err, count){
     if(count <= 0){
-      db_users.insert([{name: "tom", password: "123"}], {w:1}, function(err, user){
+      db.articles.ensureIndex({id: 1});
+      db.users.ensureIndex({id: 1});
+      db.articles.ensureIndex({id: 1});
+      db.users.insert([{id: 1, name: "tom", password: "123"}], {w:1}, function(err, user){
         var fs = require('fs');
         fs.readFile('./README.md', 'utf-8', function(err, data) {
-          db_article.insert([
-            {title: "welcome", summary: "welome to the real world!", content: data, format: 'markdown', cid: 0, uid: user._id, read: 0, comments: []},
-            {title: "Hello", summary: "Hello from the blog.", content: "<p>hello, is there anyone there?</p>", format: 'html', cid: 0, uid: user._id, read: 0, comments: []}
+          db.articles.insert([
+            {id: 1, title: "welcome", summary: "welome to the real world!", content: data, format: 'markdown', cid: 0, uid: 1, read: 0},
+            {id: 2, title: "Hello", summary: "Hello from the blog.", content: "<p>hello, is there anyone there?</p>", format: 'html', cid: 0, uid: 1, read: 0}
           ]);
         });
-        db_misc.insert({name: 'article', categories: [
+        db.misc.insert({name: 'article', categories: [
           {name: "文章", alias: "essay", index: 0},
           {name: "作品", alias: "product", index: 1},
           {name: "转载", alias: "reshipment", index: 2}]});
-        db_misc.insert({name: 'links',
+        db.misc.insert({name: 'links',
           categories: [{name: "其它站点", list: []}, {name: "友情链接", list:[]}]});
+        db.misc.insert({name: 'article_id', value: 2});
+        db.misc.insert({name: 'comment_id', value: 0});
+        db.misc.insert({name: 'user_id', value: 1});
       });
     }
   });

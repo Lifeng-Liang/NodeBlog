@@ -4,7 +4,7 @@
   <h1>编辑</h1>
 </div>
 
-<form action="/article/update/{{article._id}}" method="post" class="edit_content">
+<form action="/article/update/{{article.id}}" method="post" class="edit_content">
   <p><label for="article_category">分类：</label>
     <select id="article_category" name="article[category]">
       {{#each categories}}
