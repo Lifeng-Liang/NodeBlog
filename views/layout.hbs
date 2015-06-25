@@ -42,6 +42,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
           	<li><a href="/article/list">首页</a></li>
+            {{#each categories}}
+            <li><a href="/category/{{alias}}">{{name}}</a></li>
+            {{/each}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>

@@ -4,9 +4,9 @@
 </div>
 
 <blockquote class="bs-callout-danger">
-    <p>作者：{{user.name}}</p>
+    <p>作者：{{user.show_name}}</p>
     <p><a href="/article/edit/{{article.id}}">编辑</a></p>
-    <footer>{{article._dt}} (阅读:<span class="text-danger">{{article.read}}</span>)</footer>
+    <footer>{{article.created_on}} (阅读:<span class="text-danger">{{article.views_count}}</span>)</footer>
 </blockquote>
 
 {{{article.content}}}
@@ -17,7 +17,7 @@
 {{#each comments}}
 <div class="panel panel-default">
     <div class="panel-heading">
-        {{writer}} | <a href="/comment/destroy/{{id}}">destroy</a>
+        {{writer}} | {{saved_on}} | <a href="/comment/destroy/{{id}}">destroy</a>
     </div>
     <div class="panel-body">
         <p>{{content}}</p>
