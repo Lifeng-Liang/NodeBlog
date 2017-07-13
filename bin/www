@@ -6,7 +6,7 @@
 
 require('coffee-script/register');
 var app = require('../app');
-var debug = require('debug')('NodeBlog:server');
+var debug = require('debug')('nodeblog:server');
 var http = require('http');
 
 /**

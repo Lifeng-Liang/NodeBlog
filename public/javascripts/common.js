@@ -22,22 +22,22 @@ function checkRemark()
 {
 var form=document.all.remarkForm;
 if (form.body.value=="")
-{	alert("ÇëÌîĞ´ÆÀÂÛÄÚÈİ");
+{	alert("è¯·å¡«å†™è¯„è®ºå†…å®¹");
 	form.body.focus();
 	return false;
 }
 if (form.username.value=="")
-{	alert("ÇëÌîĞ´ĞÕÃû");
+{	alert("è¯·å¡«å†™å§“å");
 	form.username.focus();
 	return false;
 }
 if (form.body.value.length>200)
-{	alert("ÆÀÂÛÄÚÈİ²»¿ÉÒÔ³¬¹ı200×Ö");
+{	alert("è¯„è®ºå†…å®¹ä¸å¯ä»¥è¶…è¿‡200å­—");
 	form.body.focus();
 	return false;
 }
 if (form.username.value.length>10)
-{	alert("ĞÕÃû²»¿ÉÒÔ³¬¹ı10¸ö×Ö");
+{	alert("å§“åä¸å¯ä»¥è¶…è¿‡10ä¸ªå­—");
 	form.username.focus();
 	return false;
 }

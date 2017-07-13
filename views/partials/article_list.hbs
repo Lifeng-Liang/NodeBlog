@@ -6,10 +6,10 @@
   <div class="panel-body"> 
   	<p>{{summary}}</p>
   	<p class="text-right">
-  		({{created_on}},
+  		({{dateFormat created_on "yyyy-mm-dd HH:MM:ss"}},
   		阅读:<span class="text-danger">{{views_count}}</span>,
   		评论:<span class="text-danger">{{comments_count}}</span>)
-    	[ <a href="/artile/show/{{id}}">查看全文</a>]
+    	[ <a href="/article/show/{{articleId id alias}}">查看全文</a>]
     </p>
   </div>
 </div>

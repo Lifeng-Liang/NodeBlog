@@ -1,4 +1,5 @@
 orm = require('orm')
+config = require('./config')
 
 module.exports = (app) ->
 
@@ -20,6 +21,7 @@ module.exports = (app) ->
             models.article.create [
               {
                 title: 'welcome'
+                alias: 'about'
                 summary: 'welome to the real world!'
                 content: data
                 format: 'markdown'
@@ -44,13 +46,8 @@ module.exports = (app) ->
               if err
                 throw err
               console.log articles
-              return
-            return
-          return
-      return
-    return
 
-  app.use orm.express('sqlite://./db/blog.db', define: (db, models, next) ->
+  app.use orm.express(config.dbConnString, define: (db, models, next) ->
     models.user = db.define('users',
       email: String
       password: String
@@ -85,14 +82,13 @@ module.exports = (app) ->
       content: String
       saved_on: Date
       user_id: type: 'integer'
+      article_title: String
       article_id: type: 'integer')
+
     # Initialize database
     db.sync (err) ->
       if err
         throw err
       init_db models
-      return
     next()
-    return
   )
-  return

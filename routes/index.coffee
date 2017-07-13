@@ -5,8 +5,8 @@ router = express.Router()
 
 router.get '/', (req, res, next) ->
   res.redirect '/article/list'
-  return
+
 router.get '/test', (req, res, next) ->
   res.send 'Hello World ahaha'
-  return
+
 module.exports = router

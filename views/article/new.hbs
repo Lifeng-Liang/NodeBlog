@@ -6,25 +6,25 @@
 
 <form action="/article/create" method="post" class="edit_content">
   <p><label for="article_category">分类：</label>
-    <select id="article_category" name="article[category]">
+    <select id="article_category" name="category_id">
       {{#each categories}}
-      <option value="{{index}}">{{name}}</option>
+      <option value="{{id}}">{{name}}</option>
       {{/each}}
     </select>
-    <label for="article_format">格式：</label><select id="article_format" name="article[format]"><option value="html">Html</option><option value="markdown" selected="selected">Markdown</option></select>
-    <label for="article_recommend">推荐：</label><input id="article_recommend" name="article[recommend]" type="checkbox" />
-    <label for="article_writer">作者：</label><input id="article_writer" name="article[writer]" type="text" maxlength="50" size="20" />
+    <label for="article_format">格式：</label><select id="article_format" name="format"><option value="html">Html</option><option value="markdown" selected="selected">Markdown</option></select>
+    <label for="article_recommend">推荐：</label><input id="article_recommend" name="recommend" type="checkbox" />
+    <label for="article_writer">作者：</label><input id="article_writer" name="writer" type="text" maxlength="50" size="20" />
   </p>
-  <p><label for="article_reference">引用：</label><input id="article_reference" name="article[reference]" type="text" maxlength="255" size="94" /></p>
+  <p><label for="article_reference">引用：</label><input id="article_reference" name="reference" type="text" maxlength="255" size="94" /></p>
 
-  <p><label for="article_title">标题：</label><br /><input id="article_title" name="article[title]" type="text" maxlength="255" size="100" /></p>
-  <p><label for="article_alias">别名：</label><br /><input id="article_alias" name="article[alias]" type="text" maxlength="255" size="100" /></p>
+  <p><label for="article_title">标题：</label><br /><input id="article_title" name="title" type="text" maxlength="255" size="100" /></p>
+  <p><label for="article_alias">别名：</label><br /><input id="article_alias" name="alias" type="text" maxlength="255" size="100" /></p>
 
-  <p><label for="article_content">内容：</label><br /><textarea id="article_content" name="article[content]" cols="100" rows="20"></textarea></p>
-  <p><label for="article_summary">摘要：</label><br /><textarea id="article_summary" name="article[summary]" cols="100" rows="5" onchange="checkMaxLen(this,20);"></textarea></p>
+  <p><label for="article_content">内容：</label><br /><textarea id="article_content" name="content" cols="100" rows="20"></textarea></p>
+  <p><label for="article_summary">摘要：</label><br /><textarea id="article_summary" name="summary" cols="100" rows="5" onchange="checkMaxLen(this,20);"></textarea></p>
 
   <div class="edit_action">
-    <input name="commit" type="submit" value="创建" /> | <a href="/article/list">返回</a>
+    <input type="submit" value="创建" /> | <a href="/article/list">返回</a>
   </div>
 </form>
 <br />
